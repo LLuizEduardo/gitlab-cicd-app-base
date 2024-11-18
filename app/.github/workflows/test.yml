@@ -9,17 +9,23 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: 
-      image: node:20.7.0-alpine3.17
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: |
-          cd app/
-          npm install
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.7.0
 
-      - name: Run tests
-        run: npm test
+    - name: Install dependencies
+      run: |
+        cd app
+        npm install
+
+    - name: Run tests
+      run: |
+        cd app
+        npm test
+
